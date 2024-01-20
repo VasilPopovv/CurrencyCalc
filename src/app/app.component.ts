@@ -6,6 +6,7 @@ import { CoinsService } from './services/coins.service';
 import { Icoins } from './models/coins';
 import { CommonModule } from '@angular/common';
 import { ErrorService } from './services/error.service';
+import { parseCurrencys, createCurrencyMap } from './helpers/parseCurrencys';
 
 @Component({
   selector: 'app-root',
@@ -25,36 +26,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.coinsService.getCoins().subscribe((c) => {
-      this.coins = c
-        .map((i, index) => {
-          if (index === 2) {
-            return {
-              currencyCodeA: 'UAH (Ukraine Hryvna)',
-              currencyCodeB: 980,
-              date: 1705664173,
-              rateBuy: 1,
-              rateSell: 1,
-              value: 'UAH',
-            };
-          }
-          return {
-            ...i,
-            currencyCodeA: `${
-              cc.number(i.currencyCodeA.toString())?.code || 0
-            } (${cc.number(i.currencyCodeA.toString())?.currency || 0})`,
-            value: `${cc.number(i.currencyCodeA.toString())?.code}`,
-          };
-        })
-        .filter((i) => i.currencyCodeA !== '0 (0)');
-      if (this.coins.length) {
-        this.coins.map((i, index) => {
-          this.currency.set(
-            i.value || index.toString(),
-            i.rateSell || i.rateCross || index
-          );
-        });
-        console.log(this.currency);
-      }
+      this.coins = parseCurrencys(c);
+      this.currency = createCurrencyMap(this.coins)
+      console.log(this.currency);
     });
   }
 }

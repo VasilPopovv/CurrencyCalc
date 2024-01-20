@@ -20,13 +20,13 @@ export class CalcComponent {
   selectTwo: string = 'USD';
 
   onChange(e: any) {
-    if (e.target.name === 'one') {
-      this.selectOne = e.target.value;
-      this.convertTwo();
-    }
-    if (e.target.name === 'two') {
-      this.selectTwo = e.target.value;
-      this.convertOne();
+      if (e.target.name === 'one') {
+        this.selectOne = e.target.value;
+        this.convertTwo();
+      }
+      if (e.target.name === 'two') {
+        this.selectTwo = e.target.value;
+        this.convertOne();
     }
   }
 
