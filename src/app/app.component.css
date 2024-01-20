@@ -1,0 +1,14 @@
+.container {
+    margin: 100dvw;
+    margin: 0 auto;
+    & h2, p {
+        margin: 1rem 0;
+        text-align: center;
+    }
+}
+
+.error {
+    padding: 1rem 0;
+    background-color: red;
+}
+

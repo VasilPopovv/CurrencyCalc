@@ -1,0 +1,19 @@
+<div class="select">
+  <div class="select-inner">
+    <input [(ngModel)]="inputOne" type="number" (input)="convertOne()" />
+    <select (change)="onChange($event)" name="one">
+      <option *ngFor="let item of coins" [value]="item.value">
+        {{ item.currencyCodeA }}
+      </option>
+    </select>
+  </div>
+  <div class="select-inner">
+    <input [(ngModel)]="inputTwo" type="number" (input)="convertTwo()" />
+    <select (change)="onChange($event)" name="two">
+      <option *ngFor="let item of coins" [value]="item.value">
+        {{ item.currencyCodeA }}
+      </option>
+    </select>
+  </div>
+</div>
+

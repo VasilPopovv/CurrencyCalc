@@ -1,0 +1,7 @@
+<section class="header">
+  <h1>Test</h1>
+  <div>
+    <h3 *ngIf="coins">USD/UAH : {{ coins[0].rateSell | number : "1.0-2" }}</h3>
+    <h3 *ngIf="coins">EUR/UAH : {{ coins[1].rateSell | number : "1.0-2" }}</h3>
+  </div>
+</section>
