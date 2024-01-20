@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   templateUrl: './calc.component.html',
   styleUrl: './calc.component.css',
   standalone: true,
-  imports: [HeaderComponent, NgFor, ReactiveFormsModule, FormsModule],
+  imports: [HeaderComponent, NgFor, ReactiveFormsModule, FormsModule ],
 })
 export class CalcComponent {
   @Input() coins: Icoins[]
@@ -19,13 +19,15 @@ export class CalcComponent {
   selectOne: string = 'USD';
   selectTwo: string = 'USD';
 
-  onChange(e: any) {
-      if (e.target.name === 'one') {
-        this.selectOne = e.target.value;
+  onChange(e: Event) {
+    const newValue = (e.target as HTMLInputElement).value
+    const newName = (e.target as HTMLInputElement).name
+      if (newName === 'one') {
+        this.selectOne = newValue;
         this.convertTwo();
       }
-      if (e.target.name === 'two') {
-        this.selectTwo = e.target.value;
+      if (newName === 'two') {
+        this.selectTwo = newValue;
         this.convertOne();
     }
   }
