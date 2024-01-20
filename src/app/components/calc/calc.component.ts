@@ -13,11 +13,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class CalcComponent {
   @Input() coins: Icoins[]
-  @Input() currency :any
+  @Input() currency :Map<string, number>
   inputOne: number = 1;
   inputTwo: number = 1;
-  selectOne = 'USD';
-  selectTwo = 'USD';
+  selectOne: string = 'USD';
+  selectTwo: string = 'USD';
 
   onChange(e: any) {
     if (e.target.name === 'one') {
@@ -32,23 +32,23 @@ export class CalcComponent {
 
   converter(from: string, to: string, quantity: number): number {
     return (
-      ((this.currency.get(from) || 1) * quantity) / (this.currency.get(to) || 1)
+      +(((this.currency.get(from) || 1) * quantity) / (this.currency.get(to) || 1)).toFixed(2)
     );
   }
 
   convertOne() {
-    this.inputTwo = +this.converter(
+    this.inputTwo = this.converter(
       this.selectOne,
       this.selectTwo,
       this.inputOne
-    ).toFixed(2);
+    )
   }
 
   convertTwo() {
-    this.inputOne = +this.converter(
+    this.inputOne = this.converter(
       this.selectTwo,
       this.selectOne,
       this.inputTwo
-    ).toFixed(2);
+    )
   }
 }
